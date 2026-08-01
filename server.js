@@ -22,10 +22,14 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://employeemanagementtest.netlify.app"],
     credentials: true,
   })
 );
+
+//app.use(cors());
+//This allows requests from all origins. 
+// It's okay for a personal demo project, but for production it's better to explicitly list allowed origins.
 
 app.use(
   rateLimit({
