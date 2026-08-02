@@ -6,17 +6,14 @@ const validateEmail = (email) => {
 };
 
 const createCookieOptions = () => {
-  const options = {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  return {
     httpOnly: true,
-    sameSite: "lax",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 3600000,
   };
-
-  if (process.env.NODE_ENV === "production") {
-    options.secure = true;
-  }
-
-  return options;
 };
 
 exports.register = async (req, res, next) => {
